@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://c14uyf7b4a7er"]
+
+[ext_resource type="Script" path="res://label.gd" id="1_rdoif"]
+[ext_resource type="Texture2D" uid="uid://citsxfmkfa6gu" path="res://relogio_pixel.svg" id="2_ynflx"]
+
+[sub_resource type="Animation" id="Animation_73i6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hdhds"]
+resource_name = "dia_para_noite"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 2.96667),
+"transitions": PackedFloat32Array(1, 1.03526),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0e5re"]
+resource_name = "madrugada_escuro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 2.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ono1e"]
+resource_name = "noite_para_dia"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 2.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0196078)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gbi7h"]
+_data = {
+"RESET": SubResource("Animation_73i6h"),
+"dia_para_noite": SubResource("Animation_hdhds"),
+"madrugada_escuro": SubResource("Animation_0e5re"),
+"noite_para_dia": SubResource("Animation_ono1e")
+}
+
+[node name="Label" type="Label"]
+offset_left = 315.0
+offset_top = 374.0
+offset_right = 792.0
+offset_bottom = 539.0
+theme_override_font_sizes/font_size = 120
+text = "99:99:99"
+script = ExtResource("1_rdoif")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -318.0
+offset_top = -388.0
+offset_right = 827.0
+offset_bottom = 274.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gbi7h")
+}
+
+[node name="RelogioPixel" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(201, 8)
+scale = Vector2(19.5, 19.5)
+texture = ExtResource("2_ynflx")
